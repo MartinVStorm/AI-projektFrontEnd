@@ -18,8 +18,8 @@ async function summarizeText() {
     encodeURIComponent er nødvendig fordi text'en bliver sendt tilbage som et link.
      */
     try {
-        const res = await fetch(`http://localhost:8080/summerize?text=${encodeURIComponent(input)}`);
-        const aiResponse = await res.text();
+        const response = await fetch(`http://localhost:8080/summerize?text=${encodeURIComponent(input)}`);
+        const aiResponse = await response.text();
         summaryBox.textContent = aiResponse;
     } catch (error) {
         summaryBox.textContent = 'Error: Something went wrong';
