@@ -10,21 +10,22 @@ async function summarizeText() {
         return;
     }
 
-    /*
-    Styling. Burde ændre teksten i boxen når AI "tænker"
-     */
     summaryBox.style.display = 'block';
     summaryBox.textContent = 'Summarizing...';
 
-    /*
-    Ændre nok endpointed og fetch afhængigt af hvad det bliver til sidst
-    encodeURIComponent er nødvendig fordi text'en bliver sendt tilbage som et link.
-     */
     try {
-        const response = await fetch(`http://localhost:8080/summerize?text=${encodeURIComponent(input)}`);
-        const aiResponse = await response.text();
-        summaryBox.textContent = aiResponse;
+        const response = await fetch('http://localhost:8080/api/summarize', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: input })
+        });
+
+        const data = await response.json();
+        summaryBox.textContent = data.summary;
     } catch (error) {
         summaryBox.textContent = 'Error: Something went wrong';
+        console.error(error);
     }
 }
