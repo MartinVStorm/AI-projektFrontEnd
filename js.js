@@ -19,9 +19,9 @@ async function summarizeText() {
      */
     try {
         const res = await fetch(`http://localhost:8080/summerize?text=${encodeURIComponent(input)}`);
-        const text = await res.text();
-        summaryBox.textContent = text;
+        const aiResponse = await res.text();
+        summaryBox.textContent = aiResponse;
     } catch (error) {
-        summaryBox.textContent = 'Error: Unable to summarize text.';
+        summaryBox.textContent = 'Error: Something went wrong';
     }
 }
