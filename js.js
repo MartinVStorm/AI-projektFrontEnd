@@ -10,6 +10,9 @@ async function summarizeText() {
         return;
     }
 
+    /*
+    Styling. Burde ændre teksten i boxen når AI "tænker"
+     */
     summaryBox.style.display = 'block';
     summaryBox.textContent = 'Summarizing...';
 
